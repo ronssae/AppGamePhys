@@ -4,41 +4,43 @@ using UnityEngine;
 
 public class FreeFall : MonoBehaviour
 {
+    [Header("Predicted fall time (seconds)")]
     public float predictedFallTime;
-    private float actualFallTime;
+    [Header("Actual fall time (seconds)")]
+    public float actualFallTime;
+
+    private float startHeight, fallStartTime;
     private bool isFalling = false;
+    private Rigidbody2D rb;
 
     void Start()
     {
-        actualFallTime = 0f;
+        rb = GetComponent<Rigidbody2D>();
+        startHeight = transform.position.y;
+        predictedFallTime = Mathf.Sqrt(2 * startHeight / Mathf.Abs(Physics2D.gravity.y));
     }
 
     void Update()
     {
-        if (isFalling)
+        if (!isFalling && rb.velocity.y < 0)
         {
-            actualFallTime += Time.deltaTime;
+            isFalling = true;
+            fallStartTime = Time.time;
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (isFalling && collision.gameObject.CompareTag("Ground"))
         {
+            actualFallTime = Time.time - fallStartTime;
             isFalling = false;
 
             float timeDifference = Mathf.Abs(predictedFallTime - actualFallTime);
-            Debug.Log($"Time Difference: {timeDifference}");
-            if (timeDifference > 1f)
+            if (timeDifference > 1.0f)
             {
-                Debug.LogWarning("Time difference exceeds 1 second!");
+                Debug.LogWarning("Time difference exceeded 1 second!");
             }
         }
-    }
-
-    public void StartFalling()
-    {
-        isFalling = true;
-        actualFallTime = 0f;
     }
 }
