@@ -1,29 +1,51 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Physics1 : MonoBehaviour
 {
-    public Rigidbody2D rb;
+    [SerializeField] private bool haveSpeed, haveDistance, haveTime;
+    [SerializeField] private float speed, distance, time;
+    [SerializeField] private Rigidbody2D rb2d;
+    private bool start;
+    private float timer;
 
-    private float speed;
-    [SerializeField] private float distance;
-    [SerializeField] private float time;
-
-    void Awake()
+    private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        if (haveSpeed && haveDistance)
+        {
+            time = distance / speed;
+        }
+        else if (haveSpeed && haveTime)
+        {
+            distance = speed * time;
+        }
+        else if (haveDistance && haveTime)
+        {
+            speed = distance / time;
+        }
     }
 
-    void Update()
+    private void Update()
     {
-        // Calculate speed
-        speed = distance / time;
+        if (start)
+        {
+            timer += Time.deltaTime;
+            if (timer < time)
+            {
+                rb2d.velocity = new Vector2(speed, 0f);
+            }
+            else
+            {
+                rb2d.velocity = Vector2.zero;
+            }
+        }
+    }
 
-        // Set the target velocity
-        Vector2 targetVelocity = transform.right * speed; // Assuming you want to move to the right
-
-        // Use Lerp to smoothly change the velocity
-        rb.velocity = Vector2.Lerp(rb.velocity, targetVelocity, Time.deltaTime / time);
+    [Button]
+    public void StartDemo()
+    {
+        start = true;
     }
 }
