@@ -5,9 +5,9 @@ using UnityEngine;
 public class FreeFall : MonoBehaviour
 {
     [Header("Predicted fall time (seconds)")]
-    public float predictedFallTime;
+    [SerializeField] private float predictedFallTime;
     [Header("Actual fall time (seconds)")]
-    public float actualFallTime;
+    [SerializeField] private float actualFallTime;
 
     private float startHeight, fallStartTime;
     private bool isFalling = false;
