@@ -10,7 +10,6 @@ public class UpwardVelocity : MonoBehaviour
     private float gravity = 9.81f;
     [SerializeField] private Rigidbody2D rb;
     private bool start;
-    private bool timer;
 
     private void Start()
     {
