@@ -414,7 +414,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 103431130}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: cea7cb55a00532448a893f7e435db9cd, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -487,8 +487,8 @@ Transform:
   m_GameObject: {fileID: 103431130}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.24, z: 0}
-  m_LocalScale: {x: 20, y: 0.5, z: 20}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 20, y: 0.1, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1064,13 +1064,13 @@ MonoBehaviour:
   inelastic:
   - {fileID: 2047771}
   - {fileID: 2066346339}
-  superInelastic:
+  perfectlyInelastic:
   - {fileID: 412585036}
   - {fileID: 97757300}
   box1_initialVelocity: 5
   box2_initialVelocity: -1
-  box1_mass: 10
-  box2_mass: 50
+  box1_mass: 1
+  box2_mass: 1
 --- !u!4 &1630289351
 Transform:
   m_ObjectHideFlags: 0
