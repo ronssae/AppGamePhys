@@ -14,6 +14,7 @@ public class GameGame : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         magnitude = Mathf.Sqrt((rb.transform.position.x * rb.transform.position.x) + (rb.transform.position.y * rb.transform.position.y));
+
     }
 
     // Update is called once per frame
