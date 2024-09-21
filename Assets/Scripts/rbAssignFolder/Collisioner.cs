@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Collisioner : MonoBehaviour
 {
-    [SerializeField] private List<Rigidbody2D> boxes;
+    [SerializeField] private Rigidbody2D box1, box2;
     [SerializeField] private float box1_initialVelocity, box2_initialVelocity;
 
     [Min(0.0001f)]
@@ -14,9 +14,9 @@ public class Collisioner : MonoBehaviour
     [Button]
     public void StartDemo()
     {
-            boxes[0].velocity = new Vector2(box1_initialVelocity, 0);
-            boxes[1].velocity = new Vector2(box2_initialVelocity, 0);
-            boxes[0].mass = box1_mass;
-            boxes[1].mass = box2_mass;
+            box1.velocity = new Vector2(box1_initialVelocity, 0);
+            box2.velocity = new Vector2(box2_initialVelocity, 0);
+            box1.mass = box1_mass;
+            box2.mass = box2_mass;
     }
 }
