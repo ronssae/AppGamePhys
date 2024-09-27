@@ -33,14 +33,8 @@ public class FreeFall : MonoBehaviour
     {
         if (isFalling && collision.gameObject.CompareTag("Ground"))
         {
-            actualFallTime = Time.time - fallStartTime;
             isFalling = false;
-
-            float timeDifference = Mathf.Abs(predictedFallTime - actualFallTime);
-            if (timeDifference > 1.0f)
-            {
-                Debug.LogWarning("Time difference exceeded 1 second!");
-            }
+            actualFallTime = Time.time - fallStartTime;
         }
     }
 }
